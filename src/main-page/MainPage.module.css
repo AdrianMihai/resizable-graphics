@@ -1,0 +1,28 @@
+.main-page-container {
+  /* 100vw includes the vertical scrollbar gutter, so any vertical scrollbar
+     immediately forces a horizontal one. 100% never does that. */
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: hidden;
+}
+
+.graphic-container {
+  /* flex: 1 + min-height: 0 instead of calc(100% - 80px): the leftover space is
+     computed by the layout engine, and min-height: 0 stops the Konva content
+     (sized from the *previous* measurement) from acting as a floor that keeps
+     the container from shrinking back down. */
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  background: #fad7be;
+}
+
+/* Konva's wrapper div is display: inline-block, so it sits on the text baseline
+   and leaves a few px of descender gap below the canvas. */
+.graphic-container :global(.konvajs-content) {
+  display: block;
+}
